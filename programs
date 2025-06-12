@@ -208,10 +208,18 @@ public class AdditionOperationTest {
 
 gradle build,run
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+cd Desktop
+mkdir MAVENTOGRADLEPROJECT
+cd MAVENTOGRADLEPROJECT
+mvn archetype:generate -DgroupId=com.example -DartifactId=maven-example -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+cd maven-example
+notepad pom.xml
+
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
-                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example</groupId>
     <artifactId>maven-example</artifactId>
@@ -240,7 +248,9 @@ gradle build,run
         </plugins>
     </build>
 </project>
------------------------------------------
+
+notepad src\main\java\com\example\App.java
+
 package com.example;
 
 public class App {
@@ -256,13 +266,12 @@ public class App {
         return x + y;
     }
 }
------------------------------------------------
+
 mvn clean install
 mvn exec:java -Dexec.mainClass="com.example.App"
-cd maven-example
+
 gradle init
------------------------
-build.gradle
+notepad build.gradle
 
 plugins {
     id 'java'
@@ -283,7 +292,10 @@ task run(type: JavaExec) {
     main = 'com.example.App'
     classpath = sourceSets.main.runtimeClasspath
 }
-----------------------------------gradle build,run
+
+gradle build
+gradle run
+
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 wsl --list --online
 
